@@ -1,6 +1,7 @@
 library(shiny)
 library(treemap)
 library(RColorBrewer)
+library(ggplot2)
 
 shinyUI(
   navbarPage("Weight Adjustment On Sampling",
@@ -42,6 +43,32 @@ shinyUI(
                         ))
                       ),
              tabPanel("Hard",
-                      fluidPage())
+                      fluidPage(
+                        titlePanel("Weighting adjustment with unknown population"),
+                        
+                        fluidPage(
+                          fluidRow(
+                            wellPanel(h4("In order to find out.............................................................."),
+                                      fluidRow(column(6,img(src = "electionTable.png"))))
+                            ),
+                          fluidRow(
+                            #column(3,plotOutput("population")),
+                            column(12,plotOutput("elePopEW")),
+                            column(5,plotOutput("elePopWBar")),
+                            column(3,wellPanel(
+                              sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 5, step = 0.1),
+                              #textOutput("hintM"),
+                              sliderInput("catholic","Weight for Catholic", min = 0, value = 1, max = 5, step = 0.1),
+                              #textOutput("hintF"),
+                              sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 5, step = 0.1),
+                              #textOutput("hintM"),
+                              sliderInput("other","Weight for Other religions:", min = 0, value = 1, max = 5, step = 0.1)
+                              #textOutput("hintF")
+                              )
+                              )
+        
+                          )
+                      ))
              )
+)
 )
