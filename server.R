@@ -25,14 +25,14 @@ shinyServer(function(input, output) {
   output$population <- renderPlot({
     treemap(datafP, index = c("GenderP"), vSize = "PopulationP", type = "index", 
             palette = colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
-            title = "Gender Proportion in Population", fontsize.title = 14)
-  },width = 300, height = 300)
+            title = "Gender Proportion in Population", fontsize.title = 18, fontsize.labels = 16)
+  },width = 350, height = 350)
   
   output$sample <- renderPlot({
     treemap(datafS, index = c("GenderS"), vSize = "PopulationS", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4),
-            title="Gender Proportion in the Sample", fontsize.title = 14)
-  },width = 300, height = 300)
+            title="Gender Proportion in the Sample", fontsize.title = 18, fontsize.labels = 16)
+  },width = 350, height = 350)
   
   output$samplePop <- renderPlot({
    
@@ -42,8 +42,8 @@ shinyServer(function(input, output) {
     
     treemap(dataf, index=c("Gender","TVshow"), vSize = "Population", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
-            title="Use Sample to Represent Population", fontsize.title = 14)
-  }, width = 300, height = 300)
+            title="Use Sample to Represent Population", fontsize.title = 18, fontsize.labels = 16)
+  }, width = 350, height = 350)
   
   output$elePopEW <- renderPlot({
     value = inputs()
@@ -81,18 +81,22 @@ shinyServer(function(input, output) {
     late = c(dataf[4,"Population"], dataf[3,"Population"])
     dataframe = data.frame("The Ellen Show" = ellen, "The Late Night Show" = late)
     matrix = as.matrix(dataframe)
+    par(lwd = 2)
     barplot(matrix, col = c("#FBB4AE","#B3CDE3"), main = "Supporting Rate of Both Show", 
-            width = 0.8, xlim = c(0,3))
+            width = 0.8, xlim = c(0,2),cex.names=1.4, cex.main = 1.4)
+    par(lwd = 2)
     legend("topright", c("Female","Male"), fill=c("#FBB4AE","#B3CDE3"))
     
-  }, width = 600, height = 400)
+  }, width = 500, height = 420)
   
   output$hintM <- renderText(
-    if (input$male == 1){print("Move the slider to reach the right weight.")}
-    else if (input$male == 1.6){print("Congradulations! You got the correct weight for male.")}
+    if (input$male == 1){print("Move the slider to reach the right weight."
+                               ,size="\\fontsize{15pt}\\")}
+    #else if (input$male == 1.6){print("Congradulations! You got the correct weight for male.")}
     else if (input$male < 1.6){print("Hint: Move towards right to get the correct weight.")}
     else if (input$male > 1.6){print("Hint: Move towards left to get the correct weight.")}
   )
+  output$successM <- renderText({print("Congratulations")})
   output$hintF <- renderText(
     if (input$female == 1){print("Move the slider to reach the right weight.")}
     else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
