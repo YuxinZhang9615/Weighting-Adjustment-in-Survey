@@ -3,7 +3,7 @@ library(treemap)
 library(RColorBrewer)
 library(ggplot2)
 
-shinyUI(
+shinyUI(#theme("sliderColor.css")
   navbarPage("Weight Adjustment On Sampling",
              tabPanel("Easy",
                       fluidPage(
@@ -38,35 +38,36 @@ shinyUI(
                             column(7,conditionalPanel(condition = "(input.male == 1.6) & (input.female == 0.75)",
                                                       wellPanel(h1(textOutput("Congrats")), h4(textOutput("Solution")))))
                           )
-                          
-                          
                         ))
                       ),
              tabPanel("Hard",
-                      fluidPage(
+                      fluidPage(theme = "sliderColor.css",
                         titlePanel("Weighting adjustment with unknown population"),
                         
                         fluidPage(
                           fluidRow(
                             wellPanel(h4("In order to find out.............................................................."),
-                                      fluidRow(column(6,img(src = "electionTable.png"))))
+                                      fluidRow(column(6,img(src = "elec.png"))))
                             ),
                           fluidRow(
-                            #column(3,plotOutput("population")),
                             column(12,plotOutput("elePopEW")),
                             column(5,plotOutput("elePopWBar")),
                             column(3,wellPanel(
-                              sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 5, step = 0.1),
-                              #textOutput("hintM"),
-                              sliderInput("catholic","Weight for Catholic", min = 0, value = 1, max = 5, step = 0.1),
-                              #textOutput("hintF"),
-                              sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 5, step = 0.1),
-                              #textOutput("hintM"),
-                              sliderInput("other","Weight for Other religions:", min = 0, value = 1, max = 5, step = 0.1)
-                              #textOutput("hintF")
+                              sliderInput("other",paste("Weight for Other Religions:"), min = 0, value = 1, max = 4, step = 0.1),
+                              textOutput("hintO"),
+                              sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 4, step = 0.1),
+                              textOutput("hintJ"),
+                              sliderInput("catholic","Weight for Catholic:", min = 0, value = 1, max = 4, step = 0.1),
+                              textOutput("hintC"),
+                              sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 4, step = 0.1),
+                              textOutput("hintCH")
                               )
                               )
-        
+                          ),
+                          fluidRow(
+                            column(7,conditionalPanel(condition = "(input.christian == 3.5) & (input.catholic == 1.6)
+                                                      & (input.jewish == 0.2) & (input.other == 0.5)",
+                                                      wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions")))))
                           )
                       ))
              )
