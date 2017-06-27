@@ -1,0 +1,11 @@
+name: Weighting-Adjustment-in-Survey
+title: Weighting-Adjustment-in-Survey
+account: yuxinzhang
+server: shinyapps.io
+appId: 190720
+bundleId: 878817
+url: https://yuxinzhang.shinyapps.io/Weighting-Adjustment-in-Survey/
+when: 1498159046.88133
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: www/arrow1.png|www/arrow2.png|www/arrow3.png|www/arrow4.png|www/ele.PNG|www/elec.PNG

@@ -5,11 +5,14 @@ border-bottom-color: #1C2C5B;
 
 .js-irs-0 .irs-bar-edge {
 border-color: #1C2C5B;
+color: white;
 }
 
 .js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {
 background: #1C2C5B;
 }
+
+
 
 .js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {
 background: #1C2C5B;

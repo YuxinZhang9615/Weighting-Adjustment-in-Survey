@@ -14,6 +14,11 @@ shinyUI(
                                              font-style: italic;
                                              }"
                          )),
+                        tags$head(tags$style("#successF{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                         )),
                         
                         titlePanel("Weighting adjustment with one auxiliary variable"),
                         
@@ -38,14 +43,19 @@ shinyUI(
                             column(3,plotOutput("sample"))
                           ),
                           fluidRow(
-                            column(4,br(),br(),wellPanel(
+                            column(4,br(),
+                                   
+                                   uiOutput("progress")
+                                   
+                                   ,wellPanel(
                               sliderInput("male","Weight for Male:", min = 0, value = 1, max = 2, step = 0.05),
                               textOutput("hintM"),
                               conditionalPanel("input.male == 1.6", textOutput("successM")),
                               
                               br(),
                               sliderInput("female","Weight for Female", min = 0, value = 1, max = 2, step = 0.05),
-                              textOutput("hintF"))),
+                              textOutput("hintF"),
+                              conditionalPanel("input.female == 0.75", textOutput("successF")))),
                             column(3,plotOutput("samplePop")),
                             column(3,plotOutput("bar"))
                           ),
@@ -64,7 +74,7 @@ shinyUI(
                         fluidPage(
                           fluidRow(
                             wellPanel(h4("In order to find out.............................................................."),
-                                      fluidRow(column(6,img(src = "elec.png"))))
+                                      fluidRow(column(6,img(src = "election.jpg"))))
                             ),
                           fluidRow(
                             column(12,plotOutput("elePopEW")),

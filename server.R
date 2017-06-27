@@ -48,9 +48,9 @@ shinyServer(function(input, output) {
   output$elePopEW <- renderPlot({
     value = inputs()
     
-    barplot(prop.table(rbind(c(eleDatafE[1,4],eleDatafE[4,4],eleDatafE[7,4],eleDatafE[10,4],eleDatafE[13,4]),
-                             c(eleDatafE[2,4],eleDatafE[5,4],eleDatafE[8,4],eleDatafE[11,4],eleDatafE[14,4]),
-                             c(eleDatafE[3,4],eleDatafE[6,4],eleDatafE[9,4],eleDatafE[12,4],eleDatafE[15,4])))
+    barplot(prop.table(rbind(c(eleDatafEW[1,4],eleDatafEW[4,4],eleDatafEW[7,4],eleDatafEW[10,4],eleDatafEW[13,4]),
+                             c(eleDatafEW[2,4],eleDatafEW[5,4],eleDatafEW[8,4],eleDatafEW[11,4],eleDatafEW[14,4]),
+                             c(eleDatafEW[3,4],eleDatafEW[6,4],eleDatafEW[9,4],eleDatafEW[12,4],eleDatafEW[15,4])))
             ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("Christian","Catholic","Jewish","Others","None")
             , main = "Comparison of Two Candidates"
             , width = c(value[3],value[4],value[5],value[6],1)
@@ -60,11 +60,11 @@ shinyServer(function(input, output) {
   output$elePopWBar <- renderPlot({
     value = inputs()
 
-    barplot(prop.table(rbind(c(eleDatafE[1,4] * value[3],eleDatafE[3,4] * value[3]),
-                             c(eleDatafE[4,4] * value[4],eleDatafE[6,4] * value[4]),
-                             c(eleDatafE[7,4] * value[5],eleDatafE[9,4] * value[5]),
-                             c(eleDatafE[10,4]* value[6],eleDatafE[12,4]* value[6]),
-                             c(eleDatafE[13,4],eleDatafE[15,4])))
+    barplot(prop.table(rbind(c(eleDatafEW[1,4] * value[3],eleDatafEW[3,4] * value[3]),
+                             c(eleDatafEW[4,4] * value[4],eleDatafEW[6,4] * value[4]),
+                             c(eleDatafEW[7,4] * value[5],eleDatafEW[9,4] * value[5]),
+                             c(eleDatafEW[10,4]* value[6],eleDatafEW[12,4]* value[6]),
+                             c(eleDatafEW[13,4],eleDatafEW[15,4])))
             , names.arg = c("Clinton","Trump")
             , col= brewer.pal(8, "YlOrBr")
             )
@@ -96,7 +96,8 @@ shinyServer(function(input, output) {
     else if (input$male < 1.6){print("Hint: Move towards right to get the correct weight.")}
     else if (input$male > 1.6){print("Hint: Move towards left to get the correct weight.")}
   )
-  output$successM <- renderText({print("Congratulations")})
+  output$successM <- renderText({print("Congratulations! You got the correct weight for male.")})
+  output$successF <- renderText({print("Congratulations! You got the correct weight for female.")})
   output$hintF <- renderText(
     if (input$female == 1){print("Move the slider to reach the right weight.")}
     else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
@@ -148,6 +149,16 @@ shinyServer(function(input, output) {
           Here is how we compute the weight:
           ...........................................................................................")
     )
+  
+  ##################################################progress
+  output$progress <- renderUI({
+    tags$div(
+      'class' = "progress",
+      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$male * 48),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$female * 52),"%",sep = ''))
+    )
+    
+  })
   
 })
 
