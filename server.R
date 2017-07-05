@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
   output$populationRatio <- renderTable(read.csv("PopulationRatio.csv"))
   
   inputs= reactive({
-    value = c(input$male,input$female,input$christian,input$catholic,input$jewish,input$other)
+    value = c(input$male,input$female,input$christian * 0.3,input$catholic * 0.06,input$jewish * 0.1,input$other * 0.02, input$none * 0.52)
   })
   
   output$population <- renderPlot({
@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
                              c(eleDatafEW[3,4],eleDatafEW[6,4],eleDatafEW[9,4],eleDatafEW[12,4],eleDatafEW[15,4])))
             ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("Christian","Catholic","Jewish","Others","None")
             , main = "Comparison of Two Candidates"
-            , width = c(value[3],value[4],value[5],value[6],1)
+            , width = c(value[3],value[4],value[5],value[6],value[7])
     )
   },width = 1200, height = 400)
   
@@ -64,7 +64,7 @@ shinyServer(function(input, output) {
                              c(eleDatafEW[4,4] * value[4],eleDatafEW[6,4] * value[4]),
                              c(eleDatafEW[7,4] * value[5],eleDatafEW[9,4] * value[5]),
                              c(eleDatafEW[10,4]* value[6],eleDatafEW[12,4]* value[6]),
-                             c(eleDatafEW[13,4],eleDatafEW[15,4])))
+                             c(eleDatafEW[13,4]* value[7],eleDatafEW[15,4]* value[7])))
             , names.arg = c("Clinton","Trump")
             , col= brewer.pal(8, "YlOrBr")
             )
@@ -98,6 +98,11 @@ shinyServer(function(input, output) {
   )
   output$successM <- renderText({print("Congratulations! You got the correct weight for male.")})
   output$successF <- renderText({print("Congratulations! You got the correct weight for female.")})
+  output$successN <- renderText({print("Congratulations! You got the correct weight for None Religious.")})
+  output$successO <- renderText({print("Congratulations! You got the correct weight for Other Religion.")})
+  output$successJ <- renderText({print("Congratulations! You got the correct weight for jewish.")})
+  output$successC <- renderText({print("Congratulations! You got the correct weight for catholic.")})
+  output$successCH <- renderText({print("Congratulations! You got the correct weight for christian.")})
   output$hintF <- renderText(
     if (input$female == 1){print("Move the slider to reach the right weight.")}
     else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
@@ -116,15 +121,15 @@ shinyServer(function(input, output) {
   
   output$hintCH <- renderText(
     if (input$christian == 1){print("Move the slider to reach the right weight.")}
-    else if (input$christian == 3.5){print("Congradulations! You got the correct weight for Christian.")}
-    else if (input$christian < 3.5){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$christian > 3.5){print("Hint: Move towards left to get the correct weight.")}
+    else if (input$christian == 1.7){print("Congradulations! You got the correct weight for Christian.")}
+    else if (input$christian < 1.7){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$christian > 1.7){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintC <- renderText(
     if (input$catholic == 1){print("Move the slider to reach the right weight.")}
-    else if (input$catholic == 1.6){print("Congradulations! You got the correct weight for Catholic.")}
-    else if (input$catholic < 1.6){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$catholic > 1.6){print("Hint: Move towards left to get the correct weight.")}
+    else if (input$catholic == 3.8){print("Congradulations! You got the correct weight for Catholic.")}
+    else if (input$catholic < 3.8){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$catholic > 3.8){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintJ <- renderText(
     if (input$jewish == 1){print("Move the slider to reach the right weight.")}
@@ -134,9 +139,15 @@ shinyServer(function(input, output) {
   )
   output$hintO <- renderText(
     if (input$other == 1){print("Move the slider to reach the right weight.")}
-    else if (input$other == 0.5){print("Congradulations! You got the correct weight for Other religions.")}
-    else if (input$other < 0.5){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$other > 0.5){print("Hint: Move towards left to get the correct weight.")}
+    else if (input$other == 4){print("Congradulations! You got the correct weight for Other religions.")}
+    else if (input$other < 4){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$other > 4){print("Hint: Move towards left to get the correct weight.")}
+  )
+  output$hintN <- renderText(
+    if (input$none == 1){print("Move the slider to reach the right weight.")}
+    else if (input$none == 0.3){print("Congradulations! You got the correct weight for None religions.")}
+    else if (input$none < 0.3){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$none > 0.3){print("Hint: Move towards left to get the correct weight.")}
   )
   
   
@@ -153,9 +164,20 @@ shinyServer(function(input, output) {
   ##################################################progress
   output$progress <- renderUI({
     tags$div(
-      'class' = "progress",
-      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$male * 48),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$female * 52),"%",sep = ''))
+      'class' = "progress progress-striped active",
+      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$male * 30),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$female * 70),"%",sep = ''))
+    )
+    
+  })
+  output$progressB <- renderUI({
+    tags$div(
+      'class' = "progress progress-striped active",
+      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$none * 52),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$other * 2),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-danger", 'style'=paste0("width:",round(input$jewish * 10),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$catholic * 6),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",round(input$christian * 30),"%",sep = ''))
     )
     
   })

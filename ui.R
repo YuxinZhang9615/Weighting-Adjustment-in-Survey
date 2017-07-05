@@ -19,6 +19,32 @@ shinyUI(
                                              font-style: italic;
                                              }"
                          )),
+                        tags$head(tags$style("#successN{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                        tags$head(tags$style("#successO{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                        tags$head(tags$style("#successJ{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                        tags$head(tags$style("#successC{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                        tags$head(tags$style("#successCH{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                      
                         
                         titlePanel("Weighting adjustment with one auxiliary variable"),
                         
@@ -78,22 +104,30 @@ shinyUI(
                             ),
                           fluidRow(
                             column(12,plotOutput("elePopEW")),
+                            column(12,uiOutput("progressB")),
                             column(5,plotOutput("elePopWBar")),
                             column(3,wellPanel(
+                              sliderInput("none",paste("Weight for None Religions:"), min = 0, value = 1, max = 4, step = 0.1),
+                              textOutput("hintN"),
+                              conditionalPanel("input.none == 0.3", textOutput("successN")),
                               sliderInput("other",paste("Weight for Other Religions:"), min = 0, value = 1, max = 4, step = 0.1),
                               textOutput("hintO"),
+                              conditionalPanel("input.other == 4", textOutput("successO")),
                               sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 4, step = 0.1),
                               textOutput("hintJ"),
+                              conditionalPanel("input.jewish == 0.2", textOutput("successJ")),
                               sliderInput("catholic","Weight for Catholic:", min = 0, value = 1, max = 4, step = 0.1),
                               textOutput("hintC"),
+                              conditionalPanel("input.catholic == 3.8", textOutput("successC")),
                               sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintCH")
+                              textOutput("hintCH"),
+                              conditionalPanel("input.christian == 1.7", textOutput("successCH"))
                               )
                               )
                           ),
                           fluidRow(
-                            column(7,conditionalPanel(condition = "(input.christian == 3.5) & (input.catholic == 1.6)
-                                                      & (input.jewish == 0.2) & (input.other == 0.5)",
+                            column(7,conditionalPanel(condition = "(input.christian == 1.7) & (input.catholic == 3.8)
+                                                      & (input.jewish == 0.2) & (input.other == 4) & (input.none == 0.3)",
                                                       wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions")))))
                           )
                       ))
