@@ -105,7 +105,7 @@ shinyServer(function(input, output) {
   output$successCH <- renderText({print("Congratulations! You got the correct weight for christian.")})
   output$hintF <- renderText(
     if (input$female == 1){print("Move the slider to reach the right weight.")}
-    else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
+    #else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
     else if (input$female < 0.75){print("Hint: Move towards right to get the correct weight.")}
     else if (input$female > 0.75){print("Hint: Move towards left to get the correct weight.")}
   )
@@ -121,31 +121,31 @@ shinyServer(function(input, output) {
   
   output$hintCH <- renderText(
     if (input$christian == 1){print("Move the slider to reach the right weight.")}
-    else if (input$christian == 1.7){print("Congradulations! You got the correct weight for Christian.")}
+   # else if (input$christian == 1.7){print("Congradulations! You got the correct weight for Christian.")}
     else if (input$christian < 1.7){print("Hint: Move towards right to get the correct weight.")}
     else if (input$christian > 1.7){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintC <- renderText(
     if (input$catholic == 1){print("Move the slider to reach the right weight.")}
-    else if (input$catholic == 3.8){print("Congradulations! You got the correct weight for Catholic.")}
+    #else if (input$catholic == 3.8){print("Congradulations! You got the correct weight for Catholic.")}
     else if (input$catholic < 3.8){print("Hint: Move towards right to get the correct weight.")}
     else if (input$catholic > 3.8){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintJ <- renderText(
     if (input$jewish == 1){print("Move the slider to reach the right weight.")}
-    else if (input$jewish == 0.2){print("Congradulations! You got the correct weight for Jewish")}
+   # else if (input$jewish == 0.2){print("Congradulations! You got the correct weight for Jewish")}
     else if (input$jewish < 0.2){print("Hint: Move towards right to get the correct weight.")}
     else if (input$jewish > 0.2){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintO <- renderText(
     if (input$other == 1){print("Move the slider to reach the right weight.")}
-    else if (input$other == 4){print("Congradulations! You got the correct weight for Other religions.")}
+   # else if (input$other == 4){print("Congradulations! You got the correct weight for Other religions.")}
     else if (input$other < 4){print("Hint: Move towards right to get the correct weight.")}
     else if (input$other > 4){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintN <- renderText(
     if (input$none == 1){print("Move the slider to reach the right weight.")}
-    else if (input$none == 0.3){print("Congradulations! You got the correct weight for None religions.")}
+   # else if (input$none == 0.3){print("Congradulations! You got the correct weight for None religions.")}
     else if (input$none < 0.3){print("Hint: Move towards right to get the correct weight.")}
     else if (input$none > 0.3){print("Hint: Move towards left to get the correct weight.")}
   )

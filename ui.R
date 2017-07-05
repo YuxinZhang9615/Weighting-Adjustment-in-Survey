@@ -69,7 +69,7 @@ shinyUI(
                             column(3,plotOutput("sample"))
                           ),
                           fluidRow(
-                            column(4,br(),
+                            column(4,h4("Keep in mind when you adjust the sample, the summation should always be 1."),
                                    
                                    uiOutput("progress")
                                    
@@ -82,6 +82,7 @@ shinyUI(
                               sliderInput("female","Weight for Female", min = 0, value = 1, max = 2, step = 0.05),
                               textOutput("hintF"),
                               conditionalPanel("input.female == 0.75", textOutput("successF")))),
+                            br(),br(),br(),
                             column(3,plotOutput("samplePop")),
                             column(3,plotOutput("bar"))
                           ),
@@ -106,22 +107,33 @@ shinyUI(
                             column(12,plotOutput("elePopEW")),
                             column(12,uiOutput("progressB")),
                             column(5,plotOutput("elePopWBar")),
-                            column(3,wellPanel(
-                              sliderInput("none",paste("Weight for None Religions:"), min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintN"),
-                              conditionalPanel("input.none == 0.3", textOutput("successN")),
-                              sliderInput("other",paste("Weight for Other Religions:"), min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintO"),
-                              conditionalPanel("input.other == 4", textOutput("successO")),
-                              sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintJ"),
-                              conditionalPanel("input.jewish == 0.2", textOutput("successJ")),
-                              sliderInput("catholic","Weight for Catholic:", min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintC"),
-                              conditionalPanel("input.catholic == 3.8", textOutput("successC")),
-                              sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 4, step = 0.1),
-                              textOutput("hintCH"),
-                              conditionalPanel("input.christian == 1.7", textOutput("successCH"))
+                            column(7,wellPanel(
+                              fluidRow(
+                                column(5,sliderInput("none",paste("Weight for None Religions:"), min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintN"),
+                                       conditionalPanel("input.none == 0.3", textOutput("successN")))
+                              ),
+                              fluidRow(
+                                column(5, sliderInput("other",paste("Weight for Other Religions:"), min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7, textOutput("hintO"),
+                                       conditionalPanel("input.other == 4", textOutput("successO")))
+                              ),
+                              fluidRow(
+                                column(5,sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintJ"),
+                                       conditionalPanel("input.jewish == 0.2", textOutput("successJ")))
+                              ),
+                              fluidRow(
+                                column(5,sliderInput("catholic","Weight for Catholic:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintC"),
+                                       conditionalPanel("input.catholic == 3.8", textOutput("successC")))
+                              ),
+                              fluidRow(
+                                column(5,sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintCH"),
+                                       conditionalPanel("input.christian == 1.7", textOutput("successCH")))
+                              )
+                              
                               )
                               )
                           ),
