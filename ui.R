@@ -19,27 +19,27 @@ shinyUI(
                                              font-style: italic;
                                              }"
                          )),
-                        tags$head(tags$style("#successN{color: red;
-                                 font-size: 20px;
-                                             font-style: italic;
-                                             }"
-                        )),
                         tags$head(tags$style("#successO{color: red;
                                  font-size: 20px;
                                              font-style: italic;
                                              }"
                         )),
-                        tags$head(tags$style("#successJ{color: red;
+                        tags$head(tags$style("#successA{color: red;
                                  font-size: 20px;
                                              font-style: italic;
                                              }"
                         )),
-                        tags$head(tags$style("#successC{color: red;
+                        tags$head(tags$style("#successH{color: red;
                                  font-size: 20px;
                                              font-style: italic;
                                              }"
                         )),
-                        tags$head(tags$style("#successCH{color: red;
+                        tags$head(tags$style("#successB{color: red;
+                                 font-size: 20px;
+                                             font-style: italic;
+                                             }"
+                        )),
+                        tags$head(tags$style("#successW{color: red;
                                  font-size: 20px;
                                              font-style: italic;
                                              }"
@@ -69,8 +69,8 @@ shinyUI(
                             column(3,plotOutput("sample"))
                           ),
                           fluidRow(
-                            column(4,h4("Keep in mind when you adjust the sample, the summation should always be 1."),
-                                   
+                            column(4,
+                                   uiOutput("warning"),
                                    uiOutput("progress")
                                    
                                    ,wellPanel(
@@ -101,45 +101,45 @@ shinyUI(
                         fluidPage(
                           fluidRow(
                             wellPanel(h4("In order to find out.............................................................."),
-                                      fluidRow(column(6,img(src = "election.jpg"))))
+                                      fluidRow(column(6,img(src = "electionRace.jpg"))))
                             ),
                           fluidRow(
                             column(12,plotOutput("elePopEW")),
-                            column(12,uiOutput("progressB")),
+                            column(12,uiOutput("warningB"),uiOutput("progressB")),
                             column(5,plotOutput("elePopWBar")),
                             column(7,wellPanel(
                               fluidRow(
-                                column(5,sliderInput("none",paste("Weight for None Religions:"), min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintN"),
-                                       conditionalPanel("input.none == 0.3", textOutput("successN")))
+                                column(5,sliderInput("other",paste("Weight for other race:"), min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintO"),
+                                       conditionalPanel("input.other == 1.5", textOutput("successO")))
                               ),
                               fluidRow(
-                                column(5, sliderInput("other",paste("Weight for Other Religions:"), min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7, textOutput("hintO"),
-                                       conditionalPanel("input.other == 4", textOutput("successO")))
+                                column(5, sliderInput("asian",paste("Weight for Asian:"), min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7, textOutput("hintA"),
+                                       conditionalPanel("input.asian == 0.4", textOutput("successA")))
                               ),
                               fluidRow(
-                                column(5,sliderInput("jewish","Weight for Jewish:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintJ"),
-                                       conditionalPanel("input.jewish == 0.2", textOutput("successJ")))
+                                column(5,sliderInput("hispanic","Weight for Hispanic/Latino:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintH"),
+                                       conditionalPanel("input.hispanic == 0.8", textOutput("successH")))
                               ),
                               fluidRow(
-                                column(5,sliderInput("catholic","Weight for Catholic:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintC"),
-                                       conditionalPanel("input.catholic == 3.8", textOutput("successC")))
+                                column(5,sliderInput("black","Weight for Black:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintB"),
+                                       conditionalPanel("input.black == 0.5", textOutput("successB")))
                               ),
                               fluidRow(
-                                column(5,sliderInput("christian","Weight for Christian:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintCH"),
-                                       conditionalPanel("input.christian == 1.7", textOutput("successCH")))
+                                column(5,sliderInput("white","Weight for White:", min = 0, value = 1, max = 4, step = 0.1)),
+                                column(7,textOutput("hintW"),
+                                       conditionalPanel("input.white == 1.4", textOutput("successW")))
                               )
                               
                               )
                               )
                           ),
                           fluidRow(
-                            column(7,conditionalPanel(condition = "(input.christian == 1.7) & (input.catholic == 3.8)
-                                                      & (input.jewish == 0.2) & (input.other == 4) & (input.none == 0.3)",
+                            column(7,conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.5)
+                                                      & (input.hispanic == 0.8) & (input.asian == 0.4) & (input.other == 1.5)",
                                                       wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions")))))
                           )
                       ))

@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
   datafP = data.frame(population)
   sample <- read.csv("sample.csv", TRUE, sep = ",",na.strings = TRUE)
   datafS = data.frame(sample)
-  electionPopulationEW <- read.csv("electionPopulationEqually.csv",TRUE, sep = ",", na.strings = TRUE)
+  electionPopulationEW <- read.csv("electionPopulationRace.csv",TRUE, sep = ",", na.strings = TRUE)
   eleDatafEW = data.frame(electionPopulationEW)
   
   
@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
   output$populationRatio <- renderTable(read.csv("PopulationRatio.csv"))
   
   inputs= reactive({
-    value = c(input$male,input$female,input$christian * 0.3,input$catholic * 0.06,input$jewish * 0.1,input$other * 0.02, input$none * 0.52)
+    value = c(input$male,input$female,input$white*0.50,input$black*0.25,input$hispanic*0.13,input$asian*0.1,input$other*0.02)
   })
   
   output$population <- renderPlot({
@@ -51,7 +51,7 @@ shinyServer(function(input, output) {
     barplot(prop.table(rbind(c(eleDatafEW[1,4],eleDatafEW[4,4],eleDatafEW[7,4],eleDatafEW[10,4],eleDatafEW[13,4]),
                              c(eleDatafEW[2,4],eleDatafEW[5,4],eleDatafEW[8,4],eleDatafEW[11,4],eleDatafEW[14,4]),
                              c(eleDatafEW[3,4],eleDatafEW[6,4],eleDatafEW[9,4],eleDatafEW[12,4],eleDatafEW[15,4])))
-            ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("Christian","Catholic","Jewish","Others","None")
+            ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("White","Black","Hispanic/Latino","Asian","Other")
             , main = "Comparison of Two Candidates"
             , width = c(value[3],value[4],value[5],value[6],value[7])
     )
@@ -98,11 +98,11 @@ shinyServer(function(input, output) {
   )
   output$successM <- renderText({print("Congratulations! You got the correct weight for male.")})
   output$successF <- renderText({print("Congratulations! You got the correct weight for female.")})
-  output$successN <- renderText({print("Congratulations! You got the correct weight for None Religious.")})
-  output$successO <- renderText({print("Congratulations! You got the correct weight for Other Religion.")})
-  output$successJ <- renderText({print("Congratulations! You got the correct weight for jewish.")})
-  output$successC <- renderText({print("Congratulations! You got the correct weight for catholic.")})
-  output$successCH <- renderText({print("Congratulations! You got the correct weight for christian.")})
+  output$successO <- renderText({print("Congratulations! You got the correct weight for Other.")})
+  output$successA <- renderText({print("Congratulations! You got the correct weight for Asians.")})
+  output$successH <- renderText({print("Congratulations! You got the correct weight for Hispanic/Latino.")})
+  output$successB <- renderText({print("Congratulations! You got the correct weight for Black.")})
+  output$successW <- renderText({print("Congratulations! You got the correct weight for White.")})
   output$hintF <- renderText(
     if (input$female == 1){print("Move the slider to reach the right weight.")}
     #else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
@@ -119,35 +119,35 @@ shinyServer(function(input, output) {
           ...........................................................................................")
   )
   
-  output$hintCH <- renderText(
-    if (input$christian == 1){print("Move the slider to reach the right weight.")}
-   # else if (input$christian == 1.7){print("Congradulations! You got the correct weight for Christian.")}
-    else if (input$christian < 1.7){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$christian > 1.7){print("Hint: Move towards left to get the correct weight.")}
+  output$hintW <- renderText(
+    if (input$white == 1){print("Move the slider to reach the right weight.")}
+   # else if (input$white == 1.7){print("Congradulations! You got the correct weight for white.")}
+    else if (input$white < 1.4){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$white > 1.4){print("Hint: Move towards left to get the correct weight.")}
   )
-  output$hintC <- renderText(
-    if (input$catholic == 1){print("Move the slider to reach the right weight.")}
-    #else if (input$catholic == 3.8){print("Congradulations! You got the correct weight for Catholic.")}
-    else if (input$catholic < 3.8){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$catholic > 3.8){print("Hint: Move towards left to get the correct weight.")}
+  output$hintB <- renderText(
+    if (input$black == 1){print("Move the slider to reach the right weight.")}
+    #else if (input$black == 3.8){print("Congradulations! You got the correct weight for black.")}
+    else if (input$black < 0.5){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$black > 0.5){print("Hint: Move towards left to get the correct weight.")}
   )
-  output$hintJ <- renderText(
-    if (input$jewish == 1){print("Move the slider to reach the right weight.")}
-   # else if (input$jewish == 0.2){print("Congradulations! You got the correct weight for Jewish")}
-    else if (input$jewish < 0.2){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$jewish > 0.2){print("Hint: Move towards left to get the correct weight.")}
+  output$hintH <- renderText(
+    if (input$hispanic == 1){print("Move the slider to reach the right weight.")}
+   # else if (input$hispanic == 0.2){print("Congradulations! You got the correct weight for hispanic")}
+    else if (input$hispanic < 0.8){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$hispanic > 0.8){print("Hint: Move towards left to get the correct weight.")}
+  )
+  output$hintA <- renderText(
+    if (input$asian == 1){print("Move the slider to reach the right weight.")}
+   # else if (input$asian == 4){print("Congradulations! You got the correct weight for Other religions.")}
+    else if (input$asian < 0.4){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$asian > 0.4){print("Hint: Move towards left to get the correct weight.")}
   )
   output$hintO <- renderText(
     if (input$other == 1){print("Move the slider to reach the right weight.")}
-   # else if (input$other == 4){print("Congradulations! You got the correct weight for Other religions.")}
-    else if (input$other < 4){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$other > 4){print("Hint: Move towards left to get the correct weight.")}
-  )
-  output$hintN <- renderText(
-    if (input$none == 1){print("Move the slider to reach the right weight.")}
-   # else if (input$none == 0.3){print("Congradulations! You got the correct weight for None religions.")}
-    else if (input$none < 0.3){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$none > 0.3){print("Hint: Move towards left to get the correct weight.")}
+   # else if (input$other == 0.3){print("Congradulations! You got the correct weight for None religions.")}
+    else if (input$other < 1.5){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$other > 1.5){print("Hint: Move towards left to get the correct weight.")}
   )
   
   
@@ -173,13 +173,27 @@ shinyServer(function(input, output) {
   output$progressB <- renderUI({
     tags$div(
       'class' = "progress progress-striped active",
-      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$none * 52),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$other * 2),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-danger", 'style'=paste0("width:",round(input$jewish * 10),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$catholic * 6),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",round(input$christian * 30),"%",sep = ''))
+      tags$div('class' = "progress-bar progress-bar-success", 'style'=paste0("width:",round(input$other * 2),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-warning", 'style'=paste0("width:",round(input$asian * 10),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-danger", 'style'=paste0("width:",round(input$hispanic * 13),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$black * 25),"%",sep = '')),
+      tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",round(input$white * 50),"%",sep = ''))
     )
     
+  })
+  output$warning <- renderUI({
+    if (input$male * 30 + input$female * 70 <= 100){
+      h4("Keep in mind when you adjust the sample, the summation should always be 1.")
+    }else{
+      h3("Warning: The summation is larger than 1 now.",style = "color: red")
+    }
+  })
+  output$warningB <- renderUI({
+    if (input$other * 2 + input$asian * 10 + input$hispanic * 13 + input$black * 25 + input$white * 50 <= 100){
+      h3("Keep in mind when you adjust the sample, the summation should always be 1.")
+    }else{
+      h3("Warning: The summation is larger than 1 now.",style = "color: red")
+    }
   })
   
 })
