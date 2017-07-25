@@ -60,16 +60,16 @@ shinyUI(
                           ),
                           
                           fluidRow(
-                            column(4,br(),br(),wellPanel(
+                            br(),br(),wellPanel(
                               fluidRow(h3("Left is the treemap of gender proportion in population.")), 
                               fluidRow(h3("Right is the treemap of gender proportion in the sample.")),br(),
                               fluidRow(img(src = "arrow5.png", align = "right",width = 100))
-                            )),
-                            column(4,plotOutput("population")),
-                            column(3,plotOutput("sample"))
+                            , class = "col-lg-4 col-md-6 col-sm-12 col-xs-12"),
+                            wellPanel(plotOutput("population"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12"),
+                            wellPanel(plotOutput("sample"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12")
                           ),
                           fluidRow(
-                            column(4,
+                          
                                    uiOutput("warning"),
                                    uiOutput("progress")
                                    
@@ -81,10 +81,10 @@ shinyUI(
                               br(),
                               sliderInput("female","Weight for Female", min = 0, value = 1, max = 2, step = 0.05),
                               textOutput("hintF"),
-                              conditionalPanel("input.female == 0.75", textOutput("successF")))),
+                              conditionalPanel("input.female == 0.75", textOutput("successF")), class = "wellBorder3 col-lg-4 col-md-6"),
                             br(),br(),br(),
-                            column(3,plotOutput("samplePop")),
-                            column(3,plotOutput("bar"))
+                            wellPanel(plotOutput("samplePop"), class = "wellBorder2 col-lg-3 col-md-6 col-sm-12 col-xs-12"),
+                            wellPanel(plotOutput("bar"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12")
                           ),
                           
                           fluidRow(

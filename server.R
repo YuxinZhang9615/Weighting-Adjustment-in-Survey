@@ -26,13 +26,13 @@ shinyServer(function(input, output) {
     treemap(datafP, index = c("GenderP"), vSize = "PopulationP", type = "index", 
             palette = colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
             title = "Gender Proportion in Population", fontsize.title = 18, fontsize.labels = 16)
-  },width = 350, height = 350)
+  },width = 300, height = 300)
   
   output$sample <- renderPlot({
     treemap(datafS, index = c("GenderS"), vSize = "PopulationS", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4),
             title="Gender Proportion in the Sample", fontsize.title = 18, fontsize.labels = 16)
-  },width = 350, height = 350)
+  },width = 300, height = 300)
   
   output$samplePop <- renderPlot({
    
@@ -43,7 +43,7 @@ shinyServer(function(input, output) {
     treemap(dataf, index=c("Gender","TVshow"), vSize = "Population", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
             title="Use Sample to Represent Population", fontsize.title = 18, fontsize.labels = 16)
-  }, width = 350, height = 350)
+  }, width = 300, height = 300)
   
   output$elePopEW <- renderPlot({
     value = inputs()
@@ -55,7 +55,7 @@ shinyServer(function(input, output) {
             , main = "Comparison of Two Candidates"
             , width = c(value[3],value[4],value[5],value[6],value[7])
     )
-  },width = 1200, height = 400)
+  },width = 500, height = 300)
   
   output$elePopWBar <- renderPlot({
     value = inputs()

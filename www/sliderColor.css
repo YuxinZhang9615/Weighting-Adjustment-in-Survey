@@ -1,4 +1,4 @@
-﻿
+
 .js-irs-0 .irs-bar {
 border-top-color: #1C2C5B;
 border-bottom-color: #1C2C5B;
@@ -66,5 +66,48 @@ color: black;
 background: #FFFFE5;
 }
 
+.wellBorder {
+  height:340px;
+	padding-top: 4px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-clip: padding-box;
+	text-align: center;
+	background-color: transparent;
+}
+.wellBorder2 {
+  height:340px;
+	padding-top: 4px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  margin-left: 3px;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-clip: padding-box;
+	text-align: center;
+	background-color: transparent;
+}
+.wellBorder3 {
+  height:340px;
+	padding-top: 4px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  margin-left: 3px;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-clip: padding-box;
+	text-align: center;
+}
 
 
