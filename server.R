@@ -2,6 +2,7 @@ library(shiny)
 library(treemap)
 library(RColorBrewer)
 library(ggplot2)
+library(shinyBS)
 
 shinyServer(function(input, output) {
   
@@ -52,10 +53,10 @@ shinyServer(function(input, output) {
                              c(eleDatafEW[2,4],eleDatafEW[5,4],eleDatafEW[8,4],eleDatafEW[11,4],eleDatafEW[14,4]),
                              c(eleDatafEW[3,4],eleDatafEW[6,4],eleDatafEW[9,4],eleDatafEW[12,4],eleDatafEW[15,4])))
             ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("White","Black","Hispanic/Latino","Asian","Other")
-            , main = "Comparison of Two Candidates"
+            , main = "Comparison of Two Candidates", las = 1,
             , width = c(value[3],value[4],value[5],value[6],value[7])
     )
-  },width = 500, height = 300)
+  },width = 1100, height = 400)
   
   output$elePopWBar <- renderPlot({
     value = inputs()
@@ -68,7 +69,7 @@ shinyServer(function(input, output) {
             , names.arg = c("Clinton","Trump")
             , col= brewer.pal(8, "YlOrBr")
             )
-  },width = 400, height = 500)
+  },width = 400, height = 300)
   
   
   output$bar <- renderPlot({
@@ -87,7 +88,7 @@ shinyServer(function(input, output) {
     par(lwd = 2)
     legend("topright", c("Female","Male"), fill=c("#FBB4AE","#B3CDE3"))
     
-  }, width = 500, height = 420)
+  }, width = 450, height = 365)
   
   output$hintM <- renderText(
     if (input$male == 1){print("Move the slider to reach the right weight."

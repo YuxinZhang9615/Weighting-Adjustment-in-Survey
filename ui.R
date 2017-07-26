@@ -2,6 +2,7 @@ library(shiny)
 library(treemap)
 library(RColorBrewer)
 library(ggplot2)
+library(shinyBS)
 
 shinyUI(
   navbarPage("Weight Adjustment On Sampling",
@@ -71,7 +72,8 @@ shinyUI(
                           fluidRow(
                           
                                    uiOutput("warning"),
-                                   uiOutput("progress")
+                                   uiOutput("progress"),
+                                   bsPopover("progress","",content = "Green represents male, and orange represents female.")
                                    
                                    ,wellPanel(
                               sliderInput("male","Weight for Male:", min = 0, value = 1, max = 2, step = 0.05),
@@ -81,8 +83,8 @@ shinyUI(
                               br(),
                               sliderInput("female","Weight for Female", min = 0, value = 1, max = 2, step = 0.05),
                               textOutput("hintF"),
-                              conditionalPanel("input.female == 0.75", textOutput("successF")), class = "wellBorder3 col-lg-4 col-md-6"),
-                            br(),br(),br(),
+                              conditionalPanel("input.female == 0.75", textOutput("successF")), class = "col-lg-4 col-md-6"),
+                            
                             wellPanel(plotOutput("samplePop"), class = "wellBorder2 col-lg-3 col-md-6 col-sm-12 col-xs-12"),
                             wellPanel(plotOutput("bar"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12")
                           ),

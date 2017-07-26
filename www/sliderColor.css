@@ -82,11 +82,12 @@ background: #FFFFE5;
 }
 .wellBorder2 {
   height:340px;
-	padding-top: 4px;
+	padding-top: 0px;
   padding-right: 10px;
   padding-bottom: 5px;
   padding-left: 20px;
   margin-left: 3px;
+  margin-top: 0px;
 	border-left: 40px solid transparent;
 	border-right: 40px solid transparent;
 	border-top: 1px solid transparent;
@@ -109,5 +110,24 @@ background: #FFFFE5;
 	background-clip: padding-box;
 	text-align: center;
 }
-
+.wellBorder4 {
+  height:340px;
+  margin-top: 0px;
+	padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	background-clip: padding-box;
+	text-align: center;
+	background-color: transparent;
+}
+.popover-content {
+  background-color: #1C2C5B;
+  color: white;
+  font-size: 10px;
+}
 
