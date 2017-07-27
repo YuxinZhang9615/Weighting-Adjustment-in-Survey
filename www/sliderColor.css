@@ -1,3 +1,50 @@
+.skin-blue .main-header>.navbar {
+	background-color: #f08080;
+}
+
+.content-wrapper,.right-side {
+	background-color: white;
+}
+
+.skin-blue .main-header .logo {
+	background-color: #f08080;
+	color: white;
+}
+.skin-blue .main-header .logo:hover {
+	background-color: black;
+}
+
+aside.main-sidebar {
+	background-color: black !important;
+}
+
+.main-header .logo {
+  font-family: "Georgia", Times, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 15px;
+
+}
+
+h1 {
+  font-family:Georgia, serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+h2 {
+  font-family: Arial, Sans-serif;
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 20px;
+  font-weight: 550px;
+}
+h3 {
+  font-size: 22px;
+  margin-top: 0px;
+}
+h4 {
+  font-family: Arial, Sans-serif;
+  font-size: 16px;
+}
 
 .js-irs-0 .irs-bar {
 border-top-color: #1C2C5B;
@@ -67,8 +114,8 @@ background: #FFFFE5;
 }
 
 .wellBorder {
-  height:340px;
-	padding-top: 4px;
+  height:200px;
+	padding-top: 0px;
   padding-right: 10px;
   padding-bottom: 5px;
   padding-left: 15px;
@@ -129,5 +176,11 @@ background: #FFFFE5;
   background-color: #1C2C5B;
   color: white;
   font-size: 10px;
+}
+#hintM {
+  font-size: 12px;
+}
+#hintF {
+  font-size: 12px;
 }
 

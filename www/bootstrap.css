@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -1352,14 +1352,14 @@ a.text-primary:focus {
 }
 a.text-success:hover,
 a.text-success:focus {
-  color: #e6e6e6;
+  color: #B3CDE3;
 }
 .text-info {
   color: #ffffff;
 }
 a.text-info:hover,
 a.text-info:focus {
-  color: #e6e6e6;
+  color: #B3CDE3;
 }
 .text-warning {
   color: #ffffff;
@@ -3061,27 +3061,27 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: #ffffff;
-  background-color: #95a5a6;
-  border-color: #95a5a6;
+  color: #FBB4AE;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default:focus,
 .btn-default.focus {
   color: #ffffff;
-  background-color: #798d8f;
-  border-color: #566566;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default:hover {
   color: #ffffff;
-  background-color: #798d8f;
-  border-color: #74898a;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #ffffff;
-  background-color: #798d8f;
-  border-color: #74898a;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default:active:hover,
 .btn-default.active:hover,
@@ -3093,8 +3093,8 @@ fieldset[disabled] a.btn {
 .btn-default.active.focus,
 .open > .dropdown-toggle.btn-default.focus {
   color: #ffffff;
-  background-color: #687b7c;
-  border-color: #566566;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default:active,
 .btn-default.active,
@@ -3110,12 +3110,12 @@ fieldset[disabled] .btn-default:focus,
 .btn-default.disabled.focus,
 .btn-default[disabled].focus,
 fieldset[disabled] .btn-default.focus {
-  background-color: #95a5a6;
-  border-color: #95a5a6;
+  background-color: #FBB4AE !important;
+  border-color: #FBB4AE !important;
 }
 .btn-default .badge {
-  color: #95a5a6;
-  background-color: #ffffff;
+  color: #FBB4AE !important;
+  background-color: #FBB4AE !important;
 }
 .btn-primary {
   color: #ffffff;
@@ -3176,19 +3176,19 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success {
   color: #ffffff;
-  background-color: #18bc9c;
-  border-color: #18bc9c;
+  background-color: #B3CDE3;
+  border-color: #B3CDE3;
 }
 .btn-success:focus,
 .btn-success.focus {
   color: #ffffff;
-  background-color: #128f76;
-  border-color: #0a4b3e;
+  background-color: #B3CDE3;
+  border-color: #B3CDE3;
 }
 .btn-success:hover {
   color: #ffffff;
-  background-color: #128f76;
-  border-color: #11866f;
+  background-color: #B3CDE3;
+  border-color: #B3CDE3;
 }
 .btn-success:active,
 .btn-success.active,
@@ -4710,7 +4710,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #cccccc;
 }
 .breadcrumb > .active {
-  color: #95a5a6;
+  color: #FBB4AE !important;
 }
 .pagination {
   display: inline-block;
@@ -4872,11 +4872,11 @@ a.label:focus {
   top: -1px;
 }
 .label-default {
-  background-color: #95a5a6;
+  background-color: #FBB4AE !important;
 }
 .label-default[href]:hover,
 .label-default[href]:focus {
-  background-color: #798d8f;
+  background-color: #FBB4AE !important;
 }
 .label-primary {
   background-color: #2c3e50;
@@ -5824,7 +5824,7 @@ button.list-group-item-danger.active:focus {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
-  background-color: #ecf0f1;
+  background-color: #ffebee;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);

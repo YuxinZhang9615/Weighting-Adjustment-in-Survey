@@ -26,14 +26,14 @@ shinyServer(function(input, output) {
   output$population <- renderPlot({
     treemap(datafP, index = c("GenderP"), vSize = "PopulationP", type = "index", 
             palette = colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
-            title = "Gender Proportion in Population", fontsize.title = 18, fontsize.labels = 16)
-  },width = 300, height = 300)
+            title = "Gender Proportion in Population", fontsize.title = 16, fontsize.labels = 16)
+  },width = 250, height = 250)
   
   output$sample <- renderPlot({
     treemap(datafS, index = c("GenderS"), vSize = "PopulationS", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4),
-            title="Gender Proportion in the Sample", fontsize.title = 18, fontsize.labels = 16)
-  },width = 300, height = 300)
+            title="Gender Proportion in the Sample", fontsize.title = 16, fontsize.labels = 16)
+  },width = 250, height = 250)
   
   output$samplePop <- renderPlot({
    
@@ -43,8 +43,8 @@ shinyServer(function(input, output) {
     
     treemap(dataf, index=c("Gender","TVshow"), vSize = "Population", type="index", 
             palette =  colorRampPalette(brewer.pal(4, "Pastel1"))(4), 
-            title="Use Sample to Represent Population", fontsize.title = 18, fontsize.labels = 16)
-  }, width = 300, height = 300)
+            title="Use Sample to Represent Population", fontsize.title = 14, fontsize.labels = 16)
+  }, width = 260, height = 260)
   
   output$elePopEW <- renderPlot({
     value = inputs()
@@ -56,7 +56,7 @@ shinyServer(function(input, output) {
             , main = "Comparison of Two Candidates", las = 1,
             , width = c(value[3],value[4],value[5],value[6],value[7])
     )
-  },width = 1100, height = 400)
+  },width = 1000, height = 400)
   
   output$elePopWBar <- renderPlot({
     value = inputs()
@@ -84,15 +84,14 @@ shinyServer(function(input, output) {
     matrix = as.matrix(dataframe)
     par(lwd = 2)
     barplot(matrix, col = c("#FBB4AE","#B3CDE3"), main = "Supporting Rate of Both Show", 
-            width = 0.8, xlim = c(0,2),cex.names=1.4, cex.main = 1.4)
+            width = 0.8, xlim = c(0,2),cex.names=1, cex.main = 1.3)
     par(lwd = 2)
     legend("topright", c("Female","Male"), fill=c("#FBB4AE","#B3CDE3"))
     
-  }, width = 450, height = 365)
+  }, width = 370, height = 320)
   
   output$hintM <- renderText(
-    if (input$male == 1){print("Move the slider to reach the right weight."
-                               ,size="\\fontsize{15pt}\\")}
+    if (input$male == 1){print("Hint: Move the slider to reach the right weight.")}
     #else if (input$male == 1.6){print("Congradulations! You got the correct weight for male.")}
     else if (input$male < 1.6){print("Hint: Move towards right to get the correct weight.")}
     else if (input$male > 1.6){print("Hint: Move towards left to get the correct weight.")}
@@ -105,10 +104,9 @@ shinyServer(function(input, output) {
   output$successB <- renderText({print("Congratulations! You got the correct weight for Black.")})
   output$successW <- renderText({print("Congratulations! You got the correct weight for White.")})
   output$hintF <- renderText(
-    if (input$female == 1){print("Move the slider to reach the right weight.")}
-    #else if (input$female == 0.75){print("Congradulations! You got the correct weight for female.")} 
-    else if (input$female < 0.75){print("Hint: Move towards right to get the correct weight.")}
-    else if (input$female > 0.75){print("Hint: Move towards left to get the correct weight.")}
+    if (input$female == 1){print("Hint: Move the slider to reach the right weight.")}
+    else if (input$female < 0.74){print("Hint: Move towards right to get the correct weight.")}
+    else if (input$female > 0.74){print("Hint: Move towards left to get the correct weight.")}
   )
   output$Congrats <- renderText(
     print("Congratulations!") 
