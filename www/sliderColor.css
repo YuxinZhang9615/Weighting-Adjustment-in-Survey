@@ -46,6 +46,10 @@ h4 {
   font-size: 16px;
 }
 
+#other {
+  height:100px;
+}
+
 .js-irs-0 .irs-bar {
 border-top-color: #1C2C5B;
 border-bottom-color: #1C2C5B;
@@ -75,12 +79,48 @@ color: white;
 background: #1C2C5B;
 }
 
+.js-irs-2 .irs-with-grid, .js-irs-2 .irs-grid {
+  display: none;
+}
+.js-irs-2 .irs-with-grid {
+  height: 3px;
+}
+
+.js-irs-3 .irs-with-grid, .js-irs-3 .irs-grid {
+  display: none;
+}
+.js-irs-3 .irs-with-grid {
+  height: 3px;
+}
+.js-irs-4 .irs-with-grid, .js-irs-4 .irs-grid {
+  display: none;
+}
+.js-irs-4 .irs-with-grid {
+  height: 3px;
+}
+
+.js-irs-5 .irs-with-grid, .js-irs-5 .irs-grid {
+  display: none;
+}
+.js-irs-5 .irs-with-grid {
+  height: 3px;
+}
+.js-irs-6 .irs-with-grid, .js-irs-6 .irs-grid {
+  display: none;
+}
+.js-irs-6 .irs-with-grid {
+  height: 3px;
+}
+
 
 .js-irs-2 .irs-single {
 color: black;
 }
 .js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {
 background: #FE9929;
+}
+.js-irs-2 .irs-with-grid {
+    height: 0 !important;
 }
 
 
@@ -89,6 +129,9 @@ color: black;
 }
 .js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {
 background: #FEC44F;
+}
+.js-irs-3 .irs-slider, .js-irs-3 .single {
+  height:10px;
 }
 
 
@@ -172,6 +215,9 @@ background: #FFFFE5;
 	text-align: center;
 	background-color: transparent;
 }
+.well1 {
+  margin-bottom: 0px;
+}
 .popover-content {
   background-color: #1C2C5B;
   color: white;
@@ -184,3 +230,56 @@ background: #FFFFE5;
   font-size: 12px;
 }
 
+
+
+
+
+
+#range {
+  width: 160px;
+  position: relative;
+  margin: 50px auto;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 0;
+  height: 2px;
+  background: #959799;
+  outline: none;
+}
+
+#range .ui-slider-handle {
+  position: absolute;
+  margin: -3px 0 0 -9px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  background: #fff;
+  border: 0;
+  height: 18px;
+  width: 18px;
+  outline: none;
+  cursor: pointer;
+}
+
+#range .ui-slider-handle:hover,
+#range .ui-slider-handle:focus {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+#range .ui-slider-range { background: #007aff; }
+
+#range #currentVal {
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  color: #b8b8b8;
+  width: 160px;
+  text-align: center;
+  margin-top: -40px;
+}

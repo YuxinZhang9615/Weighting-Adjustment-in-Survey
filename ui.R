@@ -42,7 +42,7 @@ ui <- dashboardPage(
               ),
       tabItem(tabName = "easy",
               fluidPage(
-                theme = "bootstrap1.css",
+                theme = "theme.css",
                 tags$a(href='http://stat.psu.edu/',tags$img(src='logo5.png', align = "left", width = 60)),
                 tags$head(tags$style("#successM{color: red;
                                      font-size: 12px;
@@ -108,13 +108,14 @@ ui <- dashboardPage(
                     uiOutput("progress"),
                     
                     wellPanel(
-                      sliderInput("male","Weight for Male:", min = 0, value = 1, max = 2, step = 0.05),
+                      sliderInput("male","Weight for Male:", min = 0, value = 1, max = 2, step = 0.2),
                       textOutput("hintM"),
-                      conditionalPanel("input.male == 1.6", textOutput("successM")),
+                      #conditionalPanel("input.male == 1.6", textOutput("successM")),
                       br(),
                       sliderInput("female","Weight for Female", min = 0, value = 1, max = 2, step = 0.02),
                       textOutput("hintF"),
-                      conditionalPanel("input.female == 0.74", textOutput("successF")), class = "col-lg-4 col-md-6"),
+                      #conditionalPanel("input.female == 0.74", textOutput("successF"))
+                      class = "col-lg-4 col-md-6"),
                     
                     wellPanel(plotOutput("samplePop"), class = "wellBorder col-lg-3 col-md-6 col-sm-12 col-xs-12"),
                     wellPanel(plotOutput("bar"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12")
@@ -148,49 +149,44 @@ ui <- dashboardPage(
                           fluidRow(
                             wellPanel(
                                 fluidRow(
-                                    column(5,h3("In order to predict the result of election correctly, statisticians need to use weighting adjustment to deal with
+                                    column(5,h4("In order to predict the result of election correctly, statisticians need to use weighting adjustment to deal with
                                                  problems like non-response rate in sample analysis. This is the exit poll data from 2016 election. Can you try
                                                  playing around with the slider to get the correct weight? See how big a difference that makes.")),
-                                    column(7,img(src = "electionRace.jpg", width = 500))))
-                          ),
-                          fluidRow(
-                            column(12,plotOutput("elePopEW")),
-                            column(12,uiOutput("warningB"),uiOutput("progressB")),
+                                    column(6,offset = 1,img(src = "image3.png", width = 300))), class = "well1"),
+                          
+                            column(12,div(style = "height:260px;",plotOutput("elePopEW"))),
+                            column(7,uiOutput("warningB")), column(5,div(style = "margin-top:7px",img(src = "legend.png", width = 400))),
+                            column(12,uiOutput("progressB")),
                             column(5,plotOutput("elePopWBar")),
                             column(7,wellPanel(
                               fluidRow(
-                                column(5,sliderInput("other",paste("Weight for other race:"), min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintO"),
-                                       conditionalPanel("input.other == 1.5", textOutput("successO")))
+                                column(5,sliderInput("other",paste("Weight for other race:"), min = 0, value = 1, max = 2, step = 0.3), style = "height:60px"),
+                                column(7,textOutput("hintO"))
                               ),
                               fluidRow(
-                                column(5, sliderInput("asian",paste("Weight for Asian:"), min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7, textOutput("hintA"),
-                                       conditionalPanel("input.asian == 0.4", textOutput("successA")))
+                                column(5, sliderInput("asian",paste("Weight for Asian:"), min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
+                                column(7, textOutput("hintA"))
                               ),
                               fluidRow(
-                                column(5,sliderInput("hispanic","Weight for Hispanic/Latino:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintH"),
-                                       conditionalPanel("input.hispanic == 0.8", textOutput("successH")))
+                                column(5,sliderInput("hispanic","Weight for Hispanic/Latino:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
+                                column(7,textOutput("hintH"))
                               ),
                               fluidRow(
-                                column(5,sliderInput("black","Weight for Black:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintB"),
-                                       conditionalPanel("input.black == 0.5", textOutput("successB")))
+                                column(5,sliderInput("black","Weight for Black:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
+                                column(7,textOutput("hintB"))
                               ),
                               fluidRow(
-                                column(5,sliderInput("white","Weight for White:", min = 0, value = 1, max = 4, step = 0.1)),
-                                column(7,textOutput("hintW"),
-                                       conditionalPanel("input.white == 1.4", textOutput("successW")))
+                                column(5,sliderInput("white","Weight for White:", min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
+                                column(7,textOutput("hintW"))
                               )
                               
                             )
                             )
                           ),
                           fluidRow(
-                            column(7,conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.5)
-                                                      & (input.hispanic == 0.8) & (input.asian == 0.4) & (input.other == 1.5)",
-                                                      wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions")))))
+                            conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.5)
+                                                      & (input.hispanic == 0.7) & (input.asian == 0.4) & (input.other == 1.5)",
+                                                      wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions"))))
                           )
                             ))
               )
