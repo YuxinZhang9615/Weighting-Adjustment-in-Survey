@@ -87,8 +87,8 @@ ui <- dashboardPage(
                   fluidRow(
                     wellPanel(h4("In order to find out between The Ellen Show and The Late Night Show which one is more 
                                  popular in our campus, we did a survey on 100 students. However, this sample cannot 
-                                 represent the population well because the proportion of female in this sample is significantly 
-                                 larger than the proportion of female in the population. Therefore, we need weighting adjustment
+                                 represent the population well because the proportion of females in this sample is much 
+                                 larger than the proportion of males in the population. Therefore, we need weighting adjustment
                                  to the data we got. Based on the following table and proportion graph, can you guess what is the 
                                  correct weight? Try playing around with both sliders following the instruction."),
                               fluidRow(column(4,img(src = "image1.png", width = 200)),column(4,img(src = "image2.png", width = 300))))
@@ -150,39 +150,52 @@ ui <- dashboardPage(
                           fluidRow(
                             wellPanel(
                                 fluidRow(
-                                    column(5,h4("In order to predict the result of election correctly, statisticians need to use weighting adjustment to deal with
-                                                 problems like non-response rate in sample analysis. This is the exit poll data from 2016 election. Can you try
-                                                 playing around with the slider to get the correct weight? See how big a difference that makes.")),
-                                    column(6,offset = 1,img(src = "image3.png", width = 300))), class = "well1"),
+                                    column(5,h4("In order to predict the result of an election correctly, statisticians need to use a weighting adjustment to deal with
+                                                 problems like non-response bias in analyzing samples. This is the exit poll data from 2016 election broken down by race/ethnicity.
+                                                 Try playing around with the sliders to see how big a difference do weights make.")),
+                                    column(6,offset = 1,img(src = "image3.jpg", width = 300))), class = "well1"),
                           
-                            column(12,div(style = "height:260px;",plotOutput("elePopEW"))),
+                            column(6,div(style = "height:260px;",plotOutput("elePopEW"))),
+                            column(6, 
+                              column(5,plotOutput("elePopWBar")),
+                              column(5,div(style = "position: relative; left: 20px; top: 30px",
+                                           h5("Weights for each variable:"),
+                                div(style = "height:35px", sliderInput("other",label = NULL, min = 0, value = 1, max = 2, step = 0.3)),
+                                div(style = "height:35px", sliderInput("asian",label = NULL, min = 0, value = 1, max = 2, step = 0.2)),
+                                div(style = "height:35px", sliderInput("hispanic",NULL, min = 0, value = 1, max = 2, step = 0.1)),
+                                div(style = "height:35px", sliderInput("black",NULL, min = 0, value = 1, max = 2, step = 0.1)),
+                                div(style = "height:35px", sliderInput("white",NULL, min = 0, value = 1, max = 2, step = 0.2))
+                              ))
+                            ),
+                            div(style = "position:relative; top:-140px",
                             column(7,uiOutput("warningB")), column(5,div(style = "margin-top:7px",img(src = "legend.png", width = 400))),
                             column(12,uiOutput("progressB")),
-                            column(5,plotOutput("elePopWBar")),
-                            column(7,wellPanel(
-                              fluidRow(
-                                column(5,sliderInput("other",paste("Weight for other race:"), min = 0, value = 1, max = 2, step = 0.3), style = "height:60px"),
-                                column(7,textOutput("hintO"))
-                              ),
-                              fluidRow(
-                                column(5, sliderInput("asian",paste("Weight for Asian:"), min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
-                                column(7, textOutput("hintA"))
-                              ),
-                              fluidRow(
-                                column(5,sliderInput("hispanic","Weight for Hispanic/Latino:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
-                                column(7,textOutput("hintH"))
-                              ),
-                              fluidRow(
-                                column(5,sliderInput("black","Weight for Black:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
-                                column(7,textOutput("hintB"))
-                              ),
-                              fluidRow(
-                                column(5,sliderInput("white","Weight for White:", min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
-                                column(7,textOutput("hintW"))
-                              )
-                              
-                            )
-                            )
+                            div(style = "position: relative; top:-15px", div(style = "float: left", print("0")),div(style = "float:right", print("n"))))
+                            # column(5,plotOutput("elePopWBar")),
+                            # column(7,wellPanel(
+                            #   fluidRow(
+                            #     column(5,sliderInput("other",paste("Weight for other race:"), min = 0, value = 1, max = 2, step = 0.3), style = "height:60px"),
+                            #     column(7,textOutput("hintO"))
+                            #   ),
+                            #   fluidRow(
+                            #     column(5, sliderInput("asian",paste("Weight for Asian:"), min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
+                            #     column(7, textOutput("hintA"))
+                            #   ),
+                            #   fluidRow(
+                            #     column(5,sliderInput("hispanic","Weight for Hispanic/Latino:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
+                            #     column(7,textOutput("hintH"))
+                            #   ),
+                            #   fluidRow(
+                            #     column(5,sliderInput("black","Weight for Black:", min = 0, value = 1, max = 2, step = 0.1), style = "height:60px"),
+                            #     column(7,textOutput("hintB"))
+                            #   ),
+                            #   fluidRow(
+                            #     column(5,sliderInput("white","Weight for White:", min = 0, value = 1, max = 2, step = 0.2), style = "height:60px"),
+                            #     column(7,textOutput("hintW"))
+                            #   )
+                            #   
+                            # )
+                            # )
                           ),
                           fluidRow(
                             conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.5)
