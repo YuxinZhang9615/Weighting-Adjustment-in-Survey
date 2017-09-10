@@ -148,11 +148,19 @@ shinyServer(function(input, output) {
 
   #################################################progress
   output$progress <- renderUI({
-    tags$div(
-      'class' = "progress progress-striped active",
-      tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$male * 30),"%",sep = '')),
-      tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",round(input$female * 70),"%",sep = ''))
-    )
+    if (sum(round(input$male * 30),round(input$female * 70)) <= 100){
+      tags$div(
+        'class' = "progress progress-striped active",
+        tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$male * 30),"%",sep = '')),
+        tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",round(input$female * 70),"%",sep = ''))
+      )
+    }else{
+      tags$div(
+        'class' = "progress progress-striped active",
+        tags$div('class' = "progress-bar progress-bar-info", 'style'=paste0("width:",round(input$male * 30),"%",sep = '')),
+        tags$div('class' = "progress-bar progress-bar-default", 'style'=paste0("width:",100 - round(input$male * 30),"%",sep = ''))
+      )
+    }
     
   })
   output$progressB <- renderUI({
@@ -168,9 +176,9 @@ shinyServer(function(input, output) {
   })
   output$warning <- renderUI({
     if (input$male * 30 + input$female * 70 <= 100){
-      h4("Keep in mind when you adjust the sample, the summation should always be 1.")
+      h4("Keep in mind that the summation should always be the sample size n.")
     }else{
-      h3("Warning: The summation is larger than 1 now.",style = "color: red")
+      h4("Warning: The summation is now larger than n.",style = "color: red")
     }
   })
   output$warningB <- renderUI({

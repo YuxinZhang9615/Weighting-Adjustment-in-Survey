@@ -24,12 +24,12 @@ ui <- dashboardPage(
                 h1("Background"),
                 h2("A selected sample may not be a good representation of a population due to many reasons.
                    Non-response rate is one of the biggest challenges. When some variables measured 
-                   in the survey are under- or over-represented, statisticians use weighting adjustment as a common correction
+                   in the survey are under- or over-represented, statisticians use a weighting adjustment as a common correction
                    technique. Each survey respondent gets an adjustment weight. 
-                   People who are underrepresented get a weight more than one, and people who are 
-                   overrepresented get a weight smaller than one."),
+                   Subjects in underrepresented group get a weight more than one, and subjects in overrepresented group  
+                   get a weight smaller than one."),
                 h1("Instruction"),
-                h2("Move the sliders around to explore how adjustment weight affects the results. Use your best
+                h2("Move the sliders around to explore how the weighting adjustment affects the results. Use your best
                    judgement to find out the correct adjustment weight for each scenario. Notice that the summation
                    bar should never be larger than one because the weighted sample should never be larger than the population."),
                 h1("Acknowledgement and Credit"),
@@ -106,6 +106,7 @@ ui <- dashboardPage(
                   fluidRow(
                     uiOutput("warning"),
                     uiOutput("progress"),
+                    div(style = "position: relative; top:-15px", div(style = "float: left", print("0")),div(style = "float:right", print("n"))),
                     
                     wellPanel(
                       sliderInput("male","Weight for Male:", min = 0, value = 1, max = 2, step = 0.2),
