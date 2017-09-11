@@ -184,7 +184,7 @@ shinyServer(function(input, output) {
   })
   output$warning <- renderUI({
     if (input$male * 30 + input$female * 70 <= 100){
-      h4("Keep in mind that the summation should always be the sample size n.")
+      h4("Notice that the summation bar should never be larger or smaller than one because the weighted sample should have the same sample size as the real sample.")
     }else{
       h4("Warning: The summation is now larger than n.",style = "color: red")
     }
@@ -193,7 +193,7 @@ shinyServer(function(input, output) {
     value = inputs()
     
     if (sum(value[3], value[4], value[5], value[6], value[7]) <= 1){
-      h4("Keep in mind that the summation should always be the sample size n.")
+      h4("Notice that the summation bar should never be larger or smaller than one because the weighted sample should have the same sample size as the real sample.")
     }else{
       h4("Warning: The summation is now larger than n.",style = "color: red")
     }
