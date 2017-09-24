@@ -20,7 +20,7 @@ shinyServer(function(input, output) {
   output$populationRatio <- renderTable(read.csv("PopulationRatio.csv"))
   
   inputs= reactive({
-    value = c(input$male,input$female,input$white*0.70,input$black*0.12,input$hispanic*0.11,input$asian*0.04,input$other*0.03)
+    value = c(input$male,input$female,input$white*0.5,input$black*0.2,input$hispanic*0.15,input$asian*0.10,input$other*0.05)
   })
   
   output$population <- renderPlot({
@@ -53,7 +53,7 @@ shinyServer(function(input, output) {
                              c(eleDatafEW[2,4],eleDatafEW[5,4],eleDatafEW[8,4],eleDatafEW[11,4],eleDatafEW[14,4]),
                              c(eleDatafEW[3,4],eleDatafEW[6,4],eleDatafEW[9,4],eleDatafEW[12,4],eleDatafEW[15,4])))
             ,horiz = TRUE, col = c("#002868","azure1","#BF0A30"), names.arg = c("White","Black","Latino","Asian","Other")
-            , main = "Comparison of Two Candidates", las = 1,
+            , main = "Comparison of Two Candidates", las = 1
             , width = c(value[3],value[4],value[5],value[6],value[7])
     )
   },width = 500, height = 300)

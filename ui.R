@@ -98,6 +98,7 @@ ui <- dashboardPage(
                    wellPanel(
                       fluidRow(h3("Left is the treemap of gender proportion in population.")), 
                       fluidRow(h3("Right is the treemap of gender proportion in the sample.")),br(),
+                      fluidRow(h3("Area represents the proportion.")),
                       fluidRow(img(src = "arrow5.png", align = "right",width = 80))
                       , class = "col-lg-4 col-md-6 col-sm-12 col-xs-12"),
                     wellPanel(plotOutput("population"), class = "wellBorder col-lg-4 col-md-6 col-sm-12 col-xs-12"),
