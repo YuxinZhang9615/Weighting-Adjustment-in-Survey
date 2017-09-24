@@ -161,11 +161,11 @@ ui <- dashboardPage(
                               column(5,plotOutput("elePopWBar")),
                               column(5,div(style = "position: relative; left: 20px; top: 30px",
                                            h5("Weights for each variable:"),
-                                div(style = "height:35px", sliderInput("other",label = NULL, min = 0, value = 1, max = 2, step = 0.3)),
-                                div(style = "height:35px", sliderInput("asian",label = NULL, min = 0, value = 1, max = 2, step = 0.2)),
-                                div(style = "height:35px", sliderInput("hispanic",NULL, min = 0, value = 1, max = 2, step = 0.1)),
-                                div(style = "height:35px", sliderInput("black",NULL, min = 0, value = 1, max = 2, step = 0.1)),
-                                div(style = "height:35px", sliderInput("white",NULL, min = 0, value = 1, max = 2, step = 0.2))
+                                div(style = "height:35px", sliderInput("other",label = NULL, min = 0, value = 0.5, max = 1, step = 0.3)),
+                                div(style = "height:35px", sliderInput("asian",label = NULL, min = 0, value = 0.5, max = 1, step = 0.2)),
+                                div(style = "height:35px", sliderInput("hispanic",NULL, min = 0, value = 0.5, max = 1, step = 0.01)),
+                                div(style = "height:35px", sliderInput("black",NULL, min = 0, value = 0.5, max = 1, step = 0.3)),
+                                div(style = "height:35px", sliderInput("white",NULL, min = 0, value = 1, max = 2, step = 0.7))
                               ))
                             ),
                             div(style = "position:relative; top:-140px",
@@ -198,11 +198,17 @@ ui <- dashboardPage(
                             # )
                             # )
                           ),
-                          fluidRow(
-                            conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.5)
-                                                      & (input.hispanic == 0.7) & (input.asian == 0.4) & (input.other == 1.5)",
-                                                      wellPanel(h1(textOutput("Congradulation")), h4(textOutput("Solutions"))))
+                          fluidRow(column(8, offset = 2,
+                            div(style = "position:relative; top:-420px;",
+                                      conditionalPanel(condition = "(input.white == 1.4) & (input.black == 0.6)
+                                                      & (input.hispanic == 0.73) & (input.asian == 0.4) & (input.other == 0.6)",
+                                                      wellPanel(h1(textOutput("Congradulation")), class = "transparentpanel"))))
                           )
+                          # fluidRow(column(8, offset = 2,
+                          #                 div(style = "position:relative; top:-420px;",
+                          #                     wellPanel(
+                          #                       textOutput("change")
+                          #                     ,class = "transparentpanel"))))
                             ))
               )
     )

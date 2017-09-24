@@ -135,9 +135,6 @@ color: black;
 .js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {
 background: #FEC44F;
 }
-.js-irs-3 .irs-slider, .js-irs-3 .single {
-  height:10px;
-}
 
 
 .js-irs-4 .irs-single {
@@ -287,4 +284,8 @@ background: #FFFFE5;
   width: 160px;
   text-align: center;
   margin-top: -40px;
+}
+.transparentpanel{
+  background-color: transparent;
+  text-align: center;
 }

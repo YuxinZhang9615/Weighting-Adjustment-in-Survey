@@ -133,9 +133,7 @@ shinyServer(function(input, output) {
   # )
   # 
   # 
-  # output$Congradulation <- renderText(
-  #   print("Congratulations!") 
-  # )
+
 
   output$Solutions <- renderText(
     print("Finding the correct weight is hard, especially when the population proportion is unknown. ")
@@ -198,6 +196,9 @@ shinyServer(function(input, output) {
       h4("Warning: The summation is now larger than n.",style = "color: red")
     }
   })
+  output$Congradulation <- renderText(
+    print("Congratulations! This is the result of 2016 Exit Polls.")
+  )
   
 })
 
